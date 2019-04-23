@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders no errors 1`] = `
+<p>
+  No errors
+</p>
+`;
+
+exports[`renders one error 1`] = `
+<ul>
+  <li>
+    laa dee daa I'm an error
+  </li>
+</ul>
+`;
+
+exports[`renders one resource with two build errors 1`] = `
+<ul>
+  <li>
+    laa dee daa I'm an error
+  </li>
+  <li>
+    laa dee daa I'm another error
+  </li>
+</ul>
+`;

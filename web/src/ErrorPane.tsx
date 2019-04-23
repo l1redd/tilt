@@ -13,11 +13,37 @@ import React, { PureComponent } from "react"
  3. Tiltfile errors
 */
 
-type ErrorsProps = {}
+type Build = {
+  log: string
+  finishTime: string
+  error: {} | null
+}
+
+type ErrorResource = {
+  name: string
+  buildHistory: Array<Build>
+}
+
+type ErrorsProps = {
+  resources: Array<ErrorResource>
+}
 
 class ErrorPane extends PureComponent<ErrorsProps> {
   render() {
-    return <h1>Errors</h1>
+    let errorElements: Array<JSX.Element> = []
+    this.props.resources.forEach(r => {
+      r.buildHistory.forEach((b, i) => {
+        if (b.error !== null) {
+          errorElements.push(<li key={r.name + i}>{b.log}</li>)
+        }
+      })
+    })
+
+    if (errorElements.length === 0) {
+      return <p>No errors</p>
+    }
+
+    return <ul>{errorElements}</ul>
   }
 }
 
